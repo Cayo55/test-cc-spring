@@ -22,6 +22,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - env:
+        RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
+        RECAPTCHA_VERIFY_URL: ${{ secrets.RECAPTCHA_VERIFY_URL }}
+
       - run: mvn clean test
 
       - name: 🐳 Build Docker image
