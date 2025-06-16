@@ -1,5 +1,3 @@
-# .github/workflows/ci-cd.yml
-
 name: CI/CD for Spring Boot with Docker
 
 on:
@@ -22,11 +20,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - env:
-        RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
-        RECAPTCHA_VERIFY_URL: ${{ secrets.RECAPTCHA_VERIFY_URL }}
-
-      - run: mvn clean test
+      - name: 🧪 Run tests
+        run: mvn clean test
+        env:
+          RECAPTCHA_SECRET: ${{ secrets.RECAPTCHA_SECRET }}
+          RECAPTCHA_VERIFY_URL: ${{ secrets.RECAPTCHA_VERIFY_URL }}
 
       - name: 🐳 Build Docker image
         run: docker build -t springboot-app .
